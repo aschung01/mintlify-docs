@@ -165,5 +165,8 @@
     "x": "https://x.com/weaveldotai",
     "github": "https://github.com/weavel-ai",
     "linkedin": "https://www.linkedin.com/company/weavel"
+  },
+  "feedback": {
+    "thumbsRating": true
   }
 }
