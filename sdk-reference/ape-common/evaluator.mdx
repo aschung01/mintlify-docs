@@ -1,0 +1,92 @@
+---
+title: Evaluator
+description: A class for evaluating prompts using a given testset, metric, and global metric.
+---
+
+## Overview
+
+The `Evaluator` class provides a framework for evaluating prompts using a given testset, metric, and global metric. It handles the evaluation process, including error handling, progress tracking, and result presentation.
+
+## Attributes
+
+<ParamField path="testset" type="List[DatasetItem]">
+  The dataset to be used for evaluation.
+</ParamField>
+
+<ParamField path="generate" type="BaseGenerator">
+  The generator used to create predictions from prompts.
+</ParamField>
+
+<ParamField path="metric" type="BaseMetric">
+  The metric used to evaluate individual predictions.
+</ParamField>
+
+<ParamField path="global_metric" type="BaseGlobalMetric">
+  The metric used to compute an overall score from individual results.
+</ParamField>
+
+<ParamField path="display_progress" type="bool">
+  Whether to display a progress bar during evaluation.
+</ParamField>
+
+<ParamField path="display_table" type="Union[bool, int]">
+  Whether to display a results table, and how many rows to show if limited.
+</ParamField>
+
+<ParamField path="max_errors" type="int">
+  Maximum number of errors allowed before stopping evaluation.
+</ParamField>
+
+<ParamField path="batch_size" type="int">
+  Number of concurrent tasks to run during evaluation.
+</ParamField>
+
+<ParamField path="return_only_score" type="bool">
+  Whether to return only the final score or more detailed results.
+</ParamField>
+
+<ParamField path="error_count" type="int">
+  Counter for the number of errors encountered during evaluation.
+</ParamField>
+
+<ParamField path="total_score" type="float">
+  Cumulative score of all processed items in the testset.
+</ParamField>
+
+## Methods
+
+<ParamField path="__call__" type="method">
+Asynchronous method to evaluate a prompt using the configured testset and metrics.
+
+**Parameters:**
+
+- `prompt` (Prompt): Prompt object to be evaluated.
+- `testset` (Optional[List[DatasetItem]]): Optional testset to override the configured one.
+- `display_progress` (Optional[bool]): Whether to display a progress bar.
+- `display_table` (Optional[Union[bool, int]]): Whether and how to display results table.
+- `max_errors` (Optional[int]): Maximum number of errors allowed.
+- `batch_size` (Optional[int]): Number of concurrent tasks.
+- `return_only_score` (Optional[bool]): Whether to return only the final score.
+- `**kwargs`: Additional keyword arguments.
+
+**Returns:**
+Union[float, Tuple[List[Union[Dict, str]], List[MetricResult], GlobalMetricResult]]: 
+Evaluation results, which can be a single score or more detailed results depending on configuration.
+
+</ParamField>
+
+<ParamField path="_process_testset" type="method">
+  Asynchronous method to process the testset and compute individual metric results.
+</ParamField>
+
+<ParamField path="_bounded_process_item" type="method">
+  Asynchronous method to process a single item with concurrency control.
+</ParamField>
+
+<ParamField path="_update_progress" type="method">
+  Method to update the progress bar with current evaluation status.
+</ParamField>
+
+<ParamField path="_display_results_table" type="method">
+  Method to display a formatted table of evaluation results, if configured.
+</ParamField>

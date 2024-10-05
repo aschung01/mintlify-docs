@@ -1,0 +1,20 @@
+---
+title: Evaluation
+description: Guide to evaluating LLM generated outputs.
+---
+
+> Different evaluation strategies are suitable for different types of prompts and use cases.
+
+## Quantitative metrics
+
+Quantitative metrics are best suited for tasks such as classification, data extraction, and other tasks that can be evaluated with a predefined set of criteria.
+A dataset of inputs and ground truth outputs can be used for quantitative evaluation.
+
+## Qualitative metrics
+
+Qualitative metrics are best suited for tasks such as generation, and other tasks that require human evaluation.
+Dataset for these type of tasks can only contain inputs, and the LLM generated outputs will be evaluated by an LLM judge.
+
+<Tip>
+    The LLM judge's prompt can also be optimized to align with human evaluation scores as ground truth.
+</Tip>

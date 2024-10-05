@@ -1,0 +1,142 @@
+---
+title: Welcome
+description: Welcome to Weavel
+mode: custom
+---
+
+<div className="flex flex-col justify-center w-full h-full items-center">
+  {/* Light mode */}
+  <div className="block dark:hidden w-full">
+    <div
+      className="flex flex-col justify-center w-full items-center"
+      style={{
+        padding: "3rem 5rem 4rem 5rem",
+        gap: "1.5rem",
+        backgroundColor: "#F8FAFC",
+        color: "#000",
+      }}
+    >
+      <img
+        src="/images/ape-light.svg"
+        alt="ape-light"
+        style={{ width: "10rem" }}
+      />
+      <p
+        style={{
+          fontSize: "2.7rem",
+          fontWeight: 600,
+          fontFamily: "monospace",
+        }}
+      >
+        Automate prompt engineering
+      </p>
+      <p
+        style={{
+          fontSize: "1.4rem",
+          fontWeight: 500,
+          fontWeight: 400,
+        }}
+      >
+        Leave the manual trial and error to Ape, the first AI Prompt Engineer.
+      </p>
+      <a
+        href="/user-guides/overview"
+        className="flex items-center gap-2"
+        style={{
+          borderRadius: "5px",
+          fontSize: "1.1rem",
+          fontWeight: 300,
+          marginTop: "1.2rem",
+        }}
+      >
+        Explore the docs <Icon icon="angle-right" color="#000" />
+      </a>
+    </div>
+  </div>
+  {/* Dark mode */}
+  <div className="hidden dark:block w-full">
+    <div
+      className="flex flex-col justify-center w-full items-center"
+      style={{
+        padding: "3rem 5rem 4rem 5rem",
+        gap: "1.5rem",
+        backgroundColor: "#f8fafc10",
+        color: "#fff",
+      }}
+    >
+      <img
+        src="/images/ape-dark.svg"
+        alt="ape-dark"
+        style={{ width: "10rem" }}
+      />
+      <p
+        style={{
+          fontSize: "2.7rem",
+          fontWeight: 600,
+          fontFamily: "monospace",
+        }}
+      >
+        Automate prompt engineering
+      </p>
+      <p
+        style={{
+          fontSize: "1.4rem",
+          fontWeight: 500,
+          fontWeight: 400,
+        }}
+      >
+        Leave the manual trial and error to Ape, the first AI Prompt Engineer.
+      </p>
+      <a
+        href="/user-guides/overview"
+        className="flex items-center gap-2"
+        style={{
+          borderRadius: "5px",
+          fontSize: "1.1rem",
+          fontWeight: 300,
+          marginTop: "1.2rem",
+        }}
+      >
+        Explore the docs <Icon icon="angle-right" color="#fff" />
+      </a>
+    </div>
+  </div>
+  <div
+    className="flex flex-col justify-center w-full h-full items-center"
+    style={{ padding: "4rem 5rem 5rem 5rem", gap: "3rem" }}
+  >
+    <p
+      style={{
+        fontSize: "1.5rem",
+        fontWeight: 600,
+        fontFamily: "monospace",
+        color: "#000",
+      }}
+      className="block dark:hidden"
+    >
+      Get Started with Tools and Guides
+    </p>
+    <p
+      style={{
+        fontSize: "1.5rem",
+        fontWeight: 600,
+        fontFamily: "monospace",
+        color: "#fff",
+      }}
+      className="hidden dark:block"
+    >
+      Get Started with Tools and Guides
+    </p>
+    <CardGroup cols={3}>
+      <Card icon="play" title="Get started" href="/user-guides/overview">
+        Optimize your first prompt in minutes.
+      </Card>
+      <Card title="API Reference" icon="code-simple" href="/api-reference">
+        Integrate and scale using our API and SDKs.
+      </Card>
+      <Card title="Cookbooks" icon="utensils" href="/cookbooks">
+        Starter templates for various libraries/frameworks.
+      </Card>
+    </CardGroup>
+  </div>
+</div>

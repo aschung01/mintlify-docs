@@ -1,0 +1,44 @@
+---
+title: Concepts
+description: Basic concepts to get you started with automated prompt engineering.
+---
+
+## Data driven prompt engineering
+
+An important part of prompt engineering is to have a way to evaluate and test prompts. This is especially important to prevent regression. [ape-common](/sdk-reference/ape-common/overview) provides a set of common types and classes for data-driven prompt engineering.
+
+## Automated prompt engineering
+
+With the proper dataset, metric, and optimization algorithm, LLMs can rewrite prompts to improve performance, much faster than a human can.
+
+## Generator
+
+`Generator` is an object that takes a prompt template and inputs, and returns the LLM-generated outputs. We provide a [BaseGenerator](/sdk-reference/ape-common/generator/base-generator) class that you can inherit from to implement your own generators.
+
+## Metric
+
+`Metric` is an object that takes a dataset item and a prediction, and returns a `MetricResult`. We provide a [BaseMetric](/sdk-reference/ape-common/metric/base-metric) class that you can inherit from to implement your own metrics.
+
+Some provided metrics are:
+
+- [JsonMatchMetric](/sdk-reference/ape-common/metric/json-match-metric)
+- [SemanticF1Metric](/sdk-reference/ape-common/metric/semantic-f1-metric)
+- [CosineSimilarityMetric](/sdk-reference/ape-common/metric/cosine-similarity-metric)
+
+## GlobalMetric
+
+`GlobalMetric` is an object that takes a list of `MetricResult` objects and returns a `GlobalMetricResult`. We provide a [BaseGlobalMetric](/sdk-reference/ape-common/global-metric/base-global-metric) class that you can inherit from to implement your own global metrics.
+
+Some provided global metrics are:
+
+- [AverageGlobalMetric](/sdk-reference/ape-common/global-metric/average-global-metric)
+
+## Evaluator
+
+[Evaluator](/sdk-reference/ape-common/evaluator) assesses a prompt's performance on a dataset using specified metrics. It batch processes the dataset, tracks progress, handles errors, and provides output options.
+
+
+
+The `Evaluator` class initializes with parameters like `testset`, `metric`, `generator`, `global_metric`, and various display and processing options.
+
+When called with a `Prompt` object, it returns either a single score or a tuple of predictions, individual metric results, and the global metric result.

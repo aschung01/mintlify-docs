@@ -1,0 +1,46 @@
+---
+title: Get Started
+description: Get started with Weavel.
+---
+                
+        
+        ## Setup
+
+<Steps>
+    <Step title="Install">
+        <CodeGroup>
+        ```bash Python
+        pip install weavel
+        ```
+        ```bash TS/JS
+        npm i weavel
+        ```
+        </CodeGroup>
+
+        Optimization is only supported in the python library at the moment. If you want support for typescript or other languages, leave a vote [here](https://weavel.ai/roadmap).
+    </Step>
+    <Step title="Initialize">
+        <CodeGroup>
+        ```python Python
+        from weavel import Weavel
+
+        wv = Weavel(api_key="your_api_key")
+        ```
+        ```ts TS/JS
+        import { Weavel } from "weavel";
+
+        const wv = new Weavel({ apiKey: "your_api_key" });
+        ```
+        ```dotenv .env
+        WEAVEL_API_KEY=your_api_key
+        ```
+        </CodeGroup>
+    </Step>
+    <Step title="Get your API key">
+        Sign up for an account at [weavel.ai](https://weavel.ai) and get your API key.
+
+        <Frame caption="Settings > Developers on the dashboard">
+            ![Get your API key](/images/settings-api-key.png)
+        </Frame>
+  </Step>
+</Steps>

@@ -1,0 +1,180 @@
+---
+title: Quickstart
+description: Quickstart guide to get your first prompt optimized.
+---
+
+## Set up the base prompt
+
+`ape-common` provides a `Prompt` class to help you manage your prompt templates. `Prompt` objects can be instantiated with a dictionary or loaded from a `.prompt` file. It is also a functor class, which means it can be called like a function to run the prompt with any inputs. (read more about it [here](/sdk-reference/ape-common/prompt)).
+
+<CodeGroup>
+    
+```python Creating prompt directly
+import textwrap
+from ape.common import Prompt
+
+base_prompt = Prompt(
+    messages=[
+        {
+            "role": "system",
+            "content": textwrap.dedent(
+                """
+                You are a helpful assistant.
+                Always respond in JSON format.
+                Example response:
+                {
+                    "reasoning": [The reasoning for the answer],
+                    "answer": [The concise answer]
+                }
+                """
+            )
+        },
+        {
+            "role": "user",
+            "content": "Answer the following question: {question}"
+        }
+    ],
+    model="gpt-4o",
+)
+
+```
+```python Using promptfile
+from ape.common import Prompt
+
+base_prompt = Prompt.load_file("path/to/your_prompt.prompt")
+
+```
+```python Fetching from Weavel
+from weavel import Weavel
+from ape.common import Prompt
+
+wv = Weavel()
+
+latest_version = wv.fetch_prompt_version(
+    prompt_id="your_prompt_name",
+    version="latest",
+)
+
+base_prompt = Prompt(**latest_version.model_dump())
+```
+</CodeGroup>
+
+### Provide training data
+
+The `trainset` will be used to evaluate the performance of prompts while Ape is writing new prompts. It will also be used to pick few-shot examples for the prompts.
+
+<CodeGroup>
+    
+```python Create dataset directly
+from ape.common import DatasetItem # This is a TypedDict
+
+trainset: list[DatasetItem] = [
+    DatasetItem(
+        inputs={
+            "question": "What is the capital of the moon?"
+        },
+        outputs={
+            "reasoning": "The capital of the moon is not known.",
+            "answer": "Unknown"
+        }
+    )
+]
+```
+
+```python Fetch dataset from Weavel
+from weavel import WvDataset, Weavel
+
+wv = Weavel()
+
+trainset: WvDataset = wv.get_dataset(id="your_dataset_id")
+```
+</CodeGroup>
+
+## Set up the evaluation metric
+
+You can define your own evaluation metric by subclassing `BaseMetric` and implementing the `compute` method. You can also use predefined metrics: `JsonMatchMetric`, `CosineSimilarityMetric`, and `SemanticF1Metric`.
+
+<CodeGroup>
+```python Custom Metric
+from ape.common import BaseMetric
+
+class ExactMatchMetric(BaseMetric):
+    async def compute(self, dataset_item: DatasetItem, pred: dict) -> MetricResult:
+        score = 0
+        if pred["answer"] == dataset_item.outputs["answer"]:
+            score = 1
+
+        return MetricResult(score=score)
+```
+    
+```python LLM Judge
+import textwrap
+from ape.common import BaseMetric, Prompt
+    
+class LLMJudgeMetric(BaseMetric):
+    def __init__(self):
+        self.judge = Prompt(
+            messages=[
+                {
+                    "role": "system",
+                    "content": textwrap.dedent(
+                        """
+                        You are a truthfulness judge. Rate the truthfulness of a given AI generated content compared to the ground truth sources, and respond with a score between 0 and 5.
+
+                        Resopnd in JSON format.
+                        Example response:
+                        {
+                            "reasoning": [The reasoning for the score],
+                            "score": [The score between 0 and 5]
+                        }
+                        """
+                    )
+                },
+                {
+                    "role": "user",
+                    "content": textwrap.dedent("""
+                        AI generated content:
+                        {content}
+
+                        Ground truth sources:
+                        {sources}
+                    """)
+                }
+            ],
+            model="gpt-4o-mini",
+            response_format={
+                "type": "json_object"
+            }
+        )
+
+    async def compute(self, dataset_item: DatasetItem, pred: dict) -> MetricResult:
+        # Your code here
+        res = await self.judge(
+            content=pred["content"],
+            sources=dataset_item.metadata["sources"]
+        )
+        return MetricResult(
+            score=res["score"],
+            trace={
+                "Reason for score": res["reasoning"]
+            }
+        )
+```
+    
+</CodeGroup>
+
+## Run the optimization
+
+```python
+from weavel import Weavel
+from ape.common.metrics import JsonMatchMetric
+
+wv = Weavel()
+
+optimized_prompt = await wv.optimize(
+    base_prompt=base_prompt,
+    models=["claude-3-5-sonnet-20240620", "gpt-4o"],
+    metric=JsonMatchMetric(),
+    trainset=trainset,
+)
+```

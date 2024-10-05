@@ -1,0 +1,101 @@
+---
+sidebarTitle: Overview
+title: ape-common
+description: Common types and utilities for programmatic prompt engineering.
+---
+
+<div
+  className="flex flex-row justify-start items-center"
+  style={{ gap: "0.7rem", height: "1rem" }}
+>
+  <div className="w-fit">
+    <a href="https://pypi.org/project/ape-common/" target="_blank">
+      <img
+        src="https://img.shields.io/pypi/v/ape-common.svg"
+        alt="PyPI version"
+        noZoom
+      />
+    </a>
+  </div>
+  <div className="w-fit">
+    <a href="https://pepy.tech/project/ape-common" target="_blank">
+      <img
+        src="https://static.pepy.tech/badge/ape-common"
+        alt="Downloads"
+        noZoom
+      />
+    </a>
+  </div>
+  <div className="w-fit">
+    <a
+      href="https://github.com/weavel-ai/Ape/blob/main/LICENSE"
+      target="_blank"
+    >
+      <img
+        src="https://img.shields.io/pypi/l/ape-common.svg"
+        alt="License"
+        noZoom
+      />
+    </a>
+  </div>
+  <div className="w-fit">
+    <a href="https://github.com/weavel-ai/Ape" target="_blank">
+      <img
+        src="https://img.shields.io/github/stars/weavel-ai/Ape.svg?style=social"
+        alt="GitHub stars"
+        noZoom
+      />
+    </a>
+  </div>
+</div>
+
+## Overview
+
+Testing and evaluating prompts is a _must_ to ensure that your prompts are working as expected. `ape-common` is a python package that provides a set of common types and classes for data-driven prompt engineering.
+
+## Classes
+
+<CardGroup>
+  <Card
+    title="Prompt"
+    icon="file-lines"
+    href="/sdk-reference/ape-common/prompt"
+  >
+    Base class for storing and running prompt templates.
+  </Card>
+  <Card
+    title="BaseGenerate"
+    icon="code"
+    href="/sdk-reference/ape-common/generator/base-generator"
+  >
+    Abstract base class for generation tasks.
+  </Card>
+  <Card
+    title="BaseMetric"
+    icon="chart-simple"
+    href="/sdk-reference/ape-common/metric/base-metric"
+  >
+    Abstract base class for individual metrics.
+  </Card>
+  <Card
+    title="BaseGlobalMetric"
+    icon="chart-line"
+    href="/sdk-reference/ape-common/global-metric/base-global-metric"
+  >
+    Abstract base class for global metrics.
+  </Card>
+  <Card
+    title="BaseEvaluator"
+    icon="clipboard-check"
+    href="/sdk-reference/ape-common/evaluator"
+  >
+    Abstract base class for evaluation tasks.
+  </Card>
+  <Card
+    title="CostTracker"
+    icon="money-bill-wave"
+    href="/sdk-reference/ape-common/cost-tracker"
+  >
+    Utility class for tracking and managing API costs.
+  </Card>
+</CardGroup>

@@ -1,0 +1,64 @@
+---
+title: Overview
+description: Weavel automates prompt engineering, 50x times faster than humans.
+---
+
+## Why use Weavel?
+
+Prompt engineering is a time-consuming and tedious process of trial and error. There is no logic behind it - which makes it harder to improve and learn from the process.
+
+Good news: LLMs are as good as, and often better than humans as prompt engineers. Several projects like [DSPy](https://github.com/stanfordnlp/dspy), [TextGrad](https://github.com/zou-group/textgrad), [EvoPrompt](https://github.com/beeevita/EvoPrompt) are paving the frontier of prompt engineering research.
+
+At Weavel, we take inspiration from these research to rewrite the core algorithms with focus on single prompt optimization, all within a unified framework. We open source the implementations in [ape-core](https://github.com/weavel-ai/Ape).
+Through Weavel, we allow you to run and schedule state-of-the-art prompt optimizations without the hassle of learning different frameworks - while using your own datasets and evaluation metrics.
+
+## Core features
+
+<CardGroup cols={2}>
+  <Card
+    horizontal
+    title="Prompt Optimization"
+    icon="monkey"
+    href="/user-guides/prompt-optimization/quickstart"
+  >
+    Improve your prompts 50x times faster than humans.
+  </Card>
+  <Card horizontal title="CI/CD for Prompts" icon="file-lines">
+    Prompt management + continuous optimization based on user feedback.
+  </Card>
+  <Card horizontal title="Observability" icon="layer-group">
+    Monitor and observe LLM calls in production.
+  </Card>
+  <Card horizontal title="Dataset Curation" icon="database">
+    Automatically curate datasets from logged LLM calls.
+  </Card>
+</CardGroup>
+
+
+### Prompt Management and Continuous Optimization
+
+- Store your prompts on Weavel, and send user feedback through APIs/SDKs.
+- Run scheduled prompt optimizations based on user feedback and updated datasets.
+
+### Dataset Curation and Management
+
+- Start logging your LLM calls with one line of code.
+- Weavel will automatically pull user inputs that have never been seen before and pull them into your dataset. Label the ground truth outputs for these inputs, and Ape will learn from them.
+
+### Observability
+
+- Trace specific LLM calls in OpenTelemetry format, and visualize the internal interactions within your AI agent.
+- Recreate user sessions (from user interactions to server-logs), grouped together in a unified UI.
+
+### Analytics
+
+> This feature is currently in beta. Please [contact us](mailto:hello@weavel.ai) to enable it for your account.
+
+- **Semantic Analysis**: Extract topic, intent and sentiment from user messages
+- **Reports**: Find out which semantic events are correlated with your KPIs (e.g. retention, engagement)
+
+## Follow us
+
+Join our [discord server](https://weavel.ai/discord) to get updates and announcements, or contribute to building **Ape**.
+
+To follow our journey, follow us on [Linkedin](https://www.linkedin.com/company/weavel/) | [X](https://x.com/weaveldotai) | [Github](https://github.com/weavel-ai) | [Youtube](https://www.youtube.com/@weaveldotai).

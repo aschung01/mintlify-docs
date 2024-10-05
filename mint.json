@@ -1,91 +1,169 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Weavel docs",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
   },
   "favicon": "/favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#6f00ff",
+    "light": "#8075ff",
+    "dark": "#6f00ff",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#6f00ff",
+      "to": "#8075ff"
     }
   },
+  "layout": "topnav",
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "Discord",
+      "url": "https://weavel.ai/discord"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.weavel.ai"
+  },
+  "primaryTab": {
+    "name": "Welcome"
   },
   "tabs": [
     {
+      "name": "User Guides",
+      "url": "user-guides"
+    },
+    {
+      "name": "Cookbooks",
+      "url": "cookbooks"
+    },
+    {
       "name": "API Reference",
       "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
     },
     {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "name": "SDK Reference",
+      "url": "sdk-reference"
     }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "Welcome",
+      "pages": ["welcome"]
+    },
+    {
+      "group": "",
+      "pages": ["user-guides/overview", "user-guides/get-started"]
+    },
+    {
+      "group": "Prompt Optimization",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "user-guides/prompt-optimization/concepts",
+        "user-guides/prompt-optimization/quickstart",
+        "user-guides/prompt-optimization/datasets",
+        "user-guides/prompt-optimization/evaluation",
+        "user-guides/prompt-optimization/ci-cd"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Capture Events",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "api-reference/capture/capture-session",
+        "api-reference/capture/capture-message",
+        "api-reference/capture/capture-track-event",
+        "api-reference/capture/capture-trace",
+        "api-reference/capture/capture-span",
+        "api-reference/capture/capture-log",
+        "api-reference/capture/capture-generation",
+        "api-reference/capture/identify-user"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Datasets",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/datasets/get-dataset",
+        "api-reference/datasets/create-dataset",
+        "api-reference/datasets/delete-dataset"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Dataset Items",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/dataset-items/create-dataset-item",
+        "api-reference/dataset-items/create-dataset-item-batch"
       ]
+    },
+    {
+      "group": "Prompts",
+      "pages": [
+        "api-reference/prompts/list-prompts",
+        "api-reference/prompts/fetch-prompt",
+        "api-reference/prompts/create-prompt",
+        "api-reference/prompts/delete-prompt"
+      ]
+    },
+    {
+      "group": "Prompt Versions",
+      "pages": [
+        "api-reference/prompt-versions/list-prompt-versions",
+        "api-reference/prompt-versions/fetch-prompt-version",
+        "api-reference/prompt-versions/create-prompt-version",
+        "api-reference/prompt-versions/delete-prompt-version"
+      ]
+    },
+    {
+      "group": "Cookbooks",
+      "pages": ["cookbooks/overview"]
+    },
+    {
+      "group": "ape-common",
+      "pages": [
+        "sdk-reference/ape-common/overview",
+        "sdk-reference/ape-common/prompt",
+        "sdk-reference/ape-common/dataset-item",
+        {
+          "group": "Generator",
+          "pages": [
+            "sdk-reference/ape-common/generator/base-generator",
+            "sdk-reference/ape-common/generator/generator"
+          ]
+        },
+        {
+          "group": "Metric",
+          "pages": [
+            "sdk-reference/ape-common/metric/base-metric",
+            "sdk-reference/ape-common/metric/json-match-metric",
+            "sdk-reference/ape-common/metric/semantic-f1-metric",
+            "sdk-reference/ape-common/metric/cosine-similarity-metric"
+          ]
+        },
+        {
+          "group": "Global Metric",
+          "pages": [
+            "sdk-reference/ape-common/global-metric/base-global-metric",
+            "sdk-reference/ape-common/global-metric/average-global-metric"
+          ]
+        },
+        "sdk-reference/ape-common/evaluator",
+        "sdk-reference/ape-common/cost-tracker"
+      ]
+    },
+    {
+      "group": "ape-core",
+      "pages": ["sdk-reference/ape-core/overview"]
     }
   ],
+  "api": {
+    "baseUrl": "https://api.weavel.ai",
+    "auth": {
+      "method": "bearer"
+    }
+  },
+  "openapi": "https://api.weavel.ai/openapi.json",
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/weaveldotai",
+    "github": "https://github.com/weavel-ai",
+    "linkedin": "https://www.linkedin.com/company/weavel"
   }
 }
