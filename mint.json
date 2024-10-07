@@ -3,7 +3,8 @@
   "name": "Weavel docs",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://weavel.ai"
   },
   "favicon": "/favicon.svg",
   "colors": {
